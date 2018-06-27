@@ -1,4 +1,4 @@
-ARG PORTAINER_VERSION=1.16.5
+ARG PORTAINER_VERSION=1.18.1
 FROM portainer/portainer:${PORTAINER_VERSION}
 
 # ================================================================================================
