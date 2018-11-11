@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DOCKER_IMAGE="dockerframework/portainer"
-DOCKER_TAG="1.19"
+DOCKER_TAG="latest"
 
 #### Halt script on error
 set -e
