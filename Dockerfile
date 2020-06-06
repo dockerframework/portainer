@@ -1,4 +1,4 @@
-ARG PORTAINER_VERSION=1.18.1
+ARG PORTAINER_VERSION=linux-amd64-1.18.1
 FROM portainer/portainer:${PORTAINER_VERSION}
 
 # ================================================================================================
