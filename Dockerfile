@@ -52,7 +52,7 @@ RUN curl -sSL https://github.com/portainer/portainer/releases/download/${PORTAIN
 RUN apk del tar && \
     rm -rf /var/cache/apk/*
 
-ENTRYPOINT ["/init"]
+ENTRYPOINT ["/usr/local/portainer"]
 CMD []
 
 EXPOSE 9000
