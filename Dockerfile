@@ -1,5 +1,5 @@
-ARG PORTAINER_VERSION=2.0.0
-FROM portainer/portainer:${PORTAINER_VERSION}
+ARG TAG
+FROM alpine:${TAG:-3.12}
 
 # ================================================================================================
 #  Inspiration: Docker Framework (https://github.com/zeroc0d3/docker-framework)
@@ -20,9 +20,35 @@ FROM portainer/portainer:${PORTAINER_VERSION}
 #   - Huadong Zuo @zuohuadong
 # ================================================================================================
 
-MAINTAINER "Laradock Team <mahmoud@zalt.me>"
+ARG BUILD_DATE
+ARG BUILD_VERSION
+ARG GIT_COMMIT
+ARG GIT_URL
 
-VOLUME /data
+LABEL maintainer="mahmoud@zalt.me" \
+      org.label-schema.build-date="$BUILD_DATE" \
+      org.label-schema.name="dockerframework-portainer" \
+      org.label-schema.description="dockerframework-portainer image" \
+      org.label-schema.vcs-ref="$GIT_COMMIT" \
+      org.label-schema.vcs-url="$GIT_URL" \
+      org.label-schema.vendor="Laradock Team" \
+      org.label-schema.version="$BUILD_VERSION"
+
+ENV PORTAINER_VERSION=2.0.0 \
+    PORTAINER_HOME=/var/lib/portainer
+
+RUN mkdir ${PORTAINER_HOME} && \
+    addgroup -S portainer && \
+    adduser -S -D -g "" -G portainer -s /bin/sh -h ${PORTAINER_HOME} portainer && \
+    chown portainer:portainer ${PORTAINER_HOME}
+
+RUN curl -sSL https://github.com/portainer/portainer/releases/download/${PORTAINER_VERSION}/portainer-${PORTAINER_VERSION}-linux-amd64.tar.gz | \
+    tar -xzo -C /usr/local
+
+COPY rootfs/ /
+
+ENTRYPOINT ["/init"]
+CMD []
 
 EXPOSE 9000
-CMD []
+VOLUME ["/var/lib/portainer"]
