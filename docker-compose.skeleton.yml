@@ -18,3 +18,5 @@ services:
     environment:
       - PORTAINER_VERSION=${PORTAINER_VERSION}
       - PORTAINER_HOME=/var/lib/portainer
+    privileged: true
+    tty: true
