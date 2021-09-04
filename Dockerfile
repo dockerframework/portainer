@@ -1,5 +1,5 @@
 ARG TAG
-FROM alpine:${TAG:-3.12}
+FROM portainer/portainer-ce:${TAG:-2.6.3}-alpine
 
 # ================================================================================================
 #  Inspiration: Docker Framework (https://github.com/zeroc0d3/docker-framework)
@@ -34,7 +34,7 @@ LABEL maintainer="mahmoud@zalt.me" \
       org.label-schema.vendor="Laradock Team" \
       org.label-schema.version="$BUILD_VERSION"
 
-ENV PORTAINER_VERSION=2.0.0 \
+ENV PORTAINER_VERSION=2.6.3 \
     PORTAINER_HOME=/var/lib/portainer
 
 RUN apk update && \
@@ -45,9 +45,6 @@ RUN mkdir ${PORTAINER_HOME} && \
     addgroup -S portainer && \
     adduser -S -D -g "" -G portainer -s /bin/sh -h ${PORTAINER_HOME} portainer && \
     chown portainer:portainer ${PORTAINER_HOME}
-
-RUN curl -sSL https://github.com/portainer/portainer/releases/download/${PORTAINER_VERSION}/portainer-${PORTAINER_VERSION}-linux-amd64.tar.gz | \
-    tar -xzo -C /usr/local
 
 RUN apk del tar && \
     rm -rf /var/cache/apk/*
