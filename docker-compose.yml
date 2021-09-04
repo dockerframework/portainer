@@ -12,7 +12,7 @@ services:
     ports:
       - "8118:9000"
     volumes:
-      #- /etc/localtime:/etc/localtime:ro
+      - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - ${DATA_PORTAINER:-/opt/data/docker/portainer2.6}:/data
     environment:
