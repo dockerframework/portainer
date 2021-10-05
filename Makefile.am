@@ -1,5 +1,5 @@
 IMAGE = dockerframework/portainer
-TAG = latest
+TAG = 2.9.0
 
 clean-local:
 	docker rmi $(CLEAN_OPTIONS) $(IMAGE):$(TAG) || true
