@@ -44,9 +44,9 @@ RUN apk update && \
 RUN mkdir ${PORTAINER_HOME} && \
     addgroup -S portainer && \
     adduser -S -D -g "" -G portainer -s /bin/sh -h ${PORTAINER_HOME} portainer && \
-    chown portainer:portainer ${PORTAINER_HOME}
+    chown portainer:portainer ${PORTAINER_HOME}; sync
 
-RUN apk del tar
+RUN apk del tar; sync
 
 CMD []
 
