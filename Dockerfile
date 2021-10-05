@@ -1,5 +1,5 @@
 ARG TAG
-FROM portainer/portainer-ce:${TAG:-2.6.3}-alpine
+FROM portainer/portainer-ce:${TAG:-2.9.0}-alpine
 
 # ================================================================================================
 #  Inspiration: Docker Framework (https://github.com/zeroc0d3/docker-framework)
@@ -26,15 +26,15 @@ ARG GIT_COMMIT
 ARG GIT_URL
 
 LABEL maintainer="mahmoud@zalt.me" \
-      org.label-schema.build-date="$BUILD_DATE" \
-      org.label-schema.name="dockerframework-portainer" \
-      org.label-schema.description="dockerframework-portainer image" \
-      org.label-schema.vcs-ref="$GIT_COMMIT" \
-      org.label-schema.vcs-url="$GIT_URL" \
-      org.label-schema.vendor="Laradock Team" \
-      org.label-schema.version="$BUILD_VERSION"
+    org.label-schema.build-date="$BUILD_DATE" \
+    org.label-schema.name="dockerframework-portainer" \
+    org.label-schema.description="dockerframework-portainer image" \
+    org.label-schema.vcs-ref="$GIT_COMMIT" \
+    org.label-schema.vcs-url="$GIT_URL" \
+    org.label-schema.vendor="Laradock Team" \
+    org.label-schema.version="$BUILD_VERSION"
 
-ENV PORTAINER_VERSION=2.6.3 \
+ENV PORTAINER_VERSION=2.9.0 \
     PORTAINER_HOME=/var/lib/portainer
 
 RUN apk update && \
@@ -46,7 +46,7 @@ RUN mkdir ${PORTAINER_HOME} && \
     adduser -S -D -g "" -G portainer -s /bin/sh -h ${PORTAINER_HOME} portainer && \
     chown portainer:portainer ${PORTAINER_HOME}
 
-RUN apk del tar 
+RUN apk del tar
 
 CMD []
 

@@ -1,10 +1,9 @@
-version: '3.6'
+version: "3.6"
 
 services:
-
-#================================================================================================
-# PORTAINER
-#================================================================================================
+  #================================================================================================
+  # PORTAINER
+  #================================================================================================
   portainer:
     restart: always
     build:
@@ -14,9 +13,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${DATA_PORTAINER:-/opt/data/docker/portainer2.6}:/data
+      - ${DATA_PORTAINER:-/opt/data/docker/portainer2.9}:/data
     environment:
-      - PORTAINER_VERSION=2.6.3
+      - PORTAINER_VERSION=2.9.0
       - PORTAINER_HOME=/var/lib/portainer
     privileged: true
     tty: true
